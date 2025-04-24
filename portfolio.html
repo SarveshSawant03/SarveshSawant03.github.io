@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sarvesh Sawant | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS via jsDelivr CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts: Inter & Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, #c7e9fb 0%, #f3f8fc 100%);
+      color: #0a2540;
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #236cfa 40%, #09d0ed 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .shadow-hover:hover {
+      box-shadow: 0 8px 32px 0 rgba(42, 131, 242, 0.18), 0 1.5px 8px 0 rgba(9, 208, 237, 0.05);
+      transform: translateY(-2px) scale(1.01);
+    }
+    section {
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+    .nav-link.active, .nav-link:focus {
+      color: #236cfa;
+      border-bottom: 2px solid #236cfa;
+      outline: none;
+    }
+    .timeline-dot {
+      box-shadow: 0 0 0 4px #c7e9fb;
+      background: #236cfa;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    /* For PDF optimization: */
+    ::-webkit-scrollbar { width: 0 !important; }
+    .scroll-snap {
+      scroll-snap-type: y mandatory;
+    }
+    .scroll-snap-item {
+      scroll-snap-align: start;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Mobile menu
+      document.getElementById('mobile-menu-btn').addEventListener('click', function(){
+        let m = document.getElementById('mobile-menu');
+        m.classList.toggle('hidden');
+      });
+
+      // Smooth scroll for nav
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          let target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            window.scrollTo({top: target.offsetTop-70, behavior:'smooth'});
+          }
+        });
+      });
+
+      // Highlight nav
+      const sections = document.querySelectorAll('section');
+      window.addEventListener('scroll', () => {
+        let fromTop = window.scrollY + 90;
+        document.querySelectorAll('.nav-link').forEach(link => {
+          let section = document.querySelector(link.getAttribute('href'));
+          if (
+            section.offsetTop <= fromTop &&
+            section.offsetTop + section.offsetHeight > fromTop
+          ) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body class="bg-gradient-to-tr from-blue-100 via-blue-50 to-cyan-50 min-h-screen scroll-smooth antialiased">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 bg-white bg-opacity-90 shadow z-50">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
+      <span class="text-2xl font-extrabold gradient-text tracking-tight">Sarvesh.</span>
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="nav-link font-semibold transition-colors duration-200">Home</a>
+        <a href="#about" class="nav-link font-semibold transition-colors duration-200">About</a>
+        <a href="#experience" class="nav-link font-semibold transition-colors duration-200">Experience</a>
+        <a href="#projects" class="nav-link font-semibold transition-colors duration-200">Projects</a>
+        <a href="#certifications" class="nav-link font-semibold transition-colors duration-200">Certifications</a>
+        <a href="#activities" class="nav-link font-semibold transition-colors duration-200">Co-curricular</a>
+        <a href="#education" class="nav-link font-semibold transition-colors duration-200">Education</a>
+        <a href="#video-cv" class="nav-link font-semibold transition-colors duration-200">Video CV</a>
+        <a href="#contact" class="nav-link font-semibold transition-colors duration-200">Contact</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden focus:outline-none text-2xl text-blue-700">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-3 bg-white">
+      <a href="#home" class="block nav-link font-semibold">Home</a>
+      <a href="#about" class="block nav-link font-semibold">About</a>
+      <a href="#experience" class="block nav-link font-semibold">Experience</a>
+      <a href="#projects" class="block nav-link font-semibold">Projects</a>
+      <a href="#certifications" class="block nav-link font-semibold">Certifications</a>
+      <a href="#activities" class="block nav-link font-semibold">Co-curricular</a>
+      <a href="#education" class="block nav-link font-semibold">Education</a>
+      <a href="#video-cv" class="block nav-link font-semibold">Video CV</a>
+      <a href="#contact" class="block nav-link font-semibold">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="pt-28 pb-16 min-h-screen flex flex-col justify-center scroll-snap-item">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:space-x-12 space-y-10 md:space-y-0 px-4">
+      <div class="flex-1">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+          Hi, I'm <span class="gradient-text">Sarvesh Sawant</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-blue-800 font-semibold mb-5">
+          Computer Science Engineer | ML & AI Enthusiast | Data Science Explorer
+        </p>
+        <div class="flex flex-wrap space-x-2 mb-8">
+          <a href="https://page.genspark.site/get_upload_url/b62bcede75ff62b7960a62b045d80d726745970c27c06b38b8dde720f41a3dcf/default/be418d7c-a1be-4b8a-8f9a-0fa8b383b620" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow shadow-hover transition-all duration-150 mr-2 mb-2">General CV</a>
+          <a href="https://page.genspark.site/get_upload_url/b62bcede75ff62b7960a62b045d80d726745970c27c06b38b8dde720f41a3dcf/default/a93271b8-80e1-4455-aea5-fef8a8e6f266" target="_blank" class="px-4 py-2 bg-cyan-500 text-white rounded-lg font-semibold shadow shadow-hover transition-all duration-150 mr-2 mb-2">Specialized CV</a>
+        </div>
+        <div class="flex space-x-5 text-2xl mb-8">
+          <a href="https://linkedin.com/in/sarveshsawant03" target="_blank" class="text-blue-700 hover:text-cyan-500 transition-colors"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/SarveshSawant03" target="_blank" class="text-gray-700 hover:text-blue-700 transition-colors"><i class="fab fa-github"></i></a>
+          <a href="mailto:sarveshdsawant2003@gmail.com" class="text-blue-700 hover:text-cyan-500 transition-colors"><i class="fas fa-envelope"></i></a>
+          <a href="tel:7738736826" class="text-cyan-600 hover:text-blue-600 transition-colors"><i class="fas fa-phone"></i></a>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center">
+        <img src="https://img.freepik.com/free-vector/software-development-illustration_52683-47931.jpg" alt="Developer illustration"
+             class="rounded-xl shadow-lg w-64 sm:w-80 md:w-96 object-cover"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="md:pt-24">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center md:space-x-10">
+      <div class="flex-1 mb-8 md:mb-0 flex justify-center">
+        <img src="https://img.freepik.com/free-vector/artificial-intelligence-illustration_23-2149226673.jpg" alt="AI Art" 
+             class="rounded-xl shadow-lg w-60 sm:w-72 md:w-80 object-cover"/>
+      </div>
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold gradient-text mb-3">About Me</h2>
+        <p class="mb-4 text-blue-900 font-medium">
+          Enthusiastic Computer Science undergraduate with a robust background in Machine Learning, Artificial Intelligence, and full-stack development. Driven by curiosity, a quick learning attitude, and an eagerness to create impactful technology solutions. 
+        </p>
+        <ul class="mb-2 text-base text-blue-800">
+          <li><strong>Location:</strong> Mumbai, Maharashtra, India</li>
+          <li><strong>Email:</strong> sarveshdsawant2003@gmail.com</li>
+          <li><strong>Phone:</strong> +91 7738736826</li>
+        </ul>
+        <div class="flex flex-wrap space-x-2 py-3 mb-1">
+          <span class="text-sm bg-blue-200 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">Python</span>
+          <span class="text-sm bg-blue-200 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">C++</span>
+          <span class="text-sm bg-blue-200 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">Java</span>
+          <span class="text-sm bg-blue-200 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">R</span>
+          <span class="text-sm bg-blue-200 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">HTML</span>
+          <span class="text-sm bg-blue-200 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">CSS</span>
+          <span class="text-sm bg-blue-200 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">JavaScript</span>
+          <span class="text-sm bg-cyan-100 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">TensorFlow</span>
+          <span class="text-sm bg-cyan-100 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">MediaPipe</span>
+          <span class="text-sm bg-cyan-100 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">OpenCV</span>
+          <span class="text-sm bg-cyan-100 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">MySQL</span>
+          <span class="text-sm bg-cyan-100 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">Tableau</span>
+          <span class="text-sm bg-cyan-100 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">Excel</span>
+          <span class="text-sm bg-cyan-100 text-blue-900 font-semibold px-3 py-1.5 rounded-full mb-2">PowerBI</span>
+        </div>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span class="inline-flex items-center bg-cyan-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-full text-xs font-semibold mb-2"><i class="fas fa-bolt mr-2 text-yellow-500"></i> Problem Solving</span>
+          <span class="inline-flex items-center bg-cyan-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-full text-xs font-semibold mb-2"><i class="fas fa-people-group mr-2 text-cyan-500"></i> Teamwork</span>
+          <span class="inline-flex items-center bg-cyan-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-full text-xs font-semibold mb-2"><i class="fas fa-graduation-cap mr-2 text-blue-500"></i> Quick Learner</span>
+          <span class="inline-flex items-center bg-cyan-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-full text-xs font-semibold mb-2"><i class="fas fa-lead mr-2 text-blue-600"></i> Leadership</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold gradient-text mb-7 text-center">Experience</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="relative bg-white bg-opacity-90 rounded-xl shadow p-6 shadow-hover transition-all mb-6">
+          <div class="flex items-center mb-2">
+            <span class="w-10 h-10 flex items-center justify-center rounded-full text-2xl bg-gradient-to-t from-blue-200 to-cyan-200 mr-4">
+              <i class="fas fa-chalkboard-teacher text-blue-800"></i>
+            </span>
+            <div>
+              <div class="font-bold text-blue-900">Student Placement Coordinator (LPU)</div>
+              <div class="text-xs text-gray-500">2023 - Present</div>
+            </div>
+          </div>
+          <ul class="ml-3 mt-1 text-blue-800 text-sm list-disc">
+            <li>Coordinated placement drives and helped increase student opportunities.</li>
+            <li>Assisted fellow students with interview preparation and resume building.</li>
+          </ul>
+        </div>
+
+        <div class="relative bg-white bg-opacity-90 rounded-xl shadow p-6 shadow-hover transition-all mb-6">
+          <div class="flex items-center mb-2">
+            <span class="w-10 h-10 flex items-center justify-center rounded-full text-2xl bg-gradient-to-t from-blue-200 to-cyan-200 mr-4">
+              <i class="fas fa-lightbulb text-cyan-600"></i>
+            </span>
+            <div>
+              <div class="font-bold text-blue-900">Freelance ML/AI Projects</div>
+              <div class="text-xs text-gray-500">2023 - 2024</div>
+            </div>
+          </div>
+          <ul class="ml-3 mt-1 text-blue-800 text-sm list-disc">
+            <li>Developed and deployed ML projects in medical imaging, face/emotion recognition, and data visualization.</li>
+            <li>Delivered client-specific solutions using Python, TensorFlow, and Streamlit.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold gradient-text mb-7 text-center">Projects</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <!-- Disease Predictor -->
+        <div class="bg-white rounded-xl shadow-lg p-5 shadow-hover transition-all flex flex-col h-full">
+          <img src="https://img.freepik.com/premium-vector/medical-app-concept_625702-294.jpg" alt="Disease Predictor" class="rounded-lg mb-4 w-full object-cover h-32">
+          <h3 class="font-bold text-lg mb-1 text-blue-800">Disease Predictor</h3>
+          <span class="text-xs text-cyan-700 mb-1">Python, ML, TensorFlow, Streamlit</span>
+          <p class="text-base text-blue-700 mb-2">Streamlit-based disease prediction app analyzing chest X-rays, eye scans & skin images for diseases like TB, Pneumonia, Retina OCT abnormalities & Skin cancer.</p>
+          <a class="underline text-blue-700 hover:text-cyan-600 text-sm mt-auto" href="https://diseasechecker-6nrsuzgm8plxufkh4mhfvq.streamlit.app/" target="_blank">Live Demo</a>
+        </div>
+        <!-- Facial Recognition & Emotion Detector -->
+        <div class="bg-white rounded-xl shadow-lg p-5 shadow-hover transition-all flex flex-col h-full">
+          <img src="https://img.freepik.com/free-vector/emotions-concept-illustration_114360-5536.jpg" alt="Facial Recognition Detector" class="rounded-lg mb-4 w-full object-cover h-32">
+          <h3 class="font-bold text-lg mb-1 text-blue-800">Facial Recognition & Emotion Detector</h3>
+          <span class="text-xs text-cyan-700 mb-1">Python, ML, MediaPipe, GeminiAPI, Streamlit</span>
+          <p class="text-base text-blue-700 mb-2">App for real-time face verification & emotion detection using DeepFace & MediaPipe with Gemini API for report generation.</p>
+          <a class="underline text-blue-700 hover:text-cyan-600 text-sm mt-auto" href="https://emotion-detector-analysis.streamlit.app/" target="_blank">Live Demo</a>
+        </div>
+        <!-- Netflix Sales Analysis Dashboard -->
+        <div class="bg-white rounded-xl shadow-lg p-5 shadow-hover transition-all flex flex-col h-full">
+          <img src="https://img.freepik.com/free-vector/monthly-sales-report-concept-illustration_114360-8928.jpg" alt="Dashboard" class="rounded-lg mb-4 w-full object-cover h-32">
+          <h3 class="font-bold text-lg mb-1 text-blue-800">Netflix Sales Analysis Dashboard</h3>
+          <span class="text-xs text-cyan-700 mb-1">Tableau, Excel</span>
+          <p class="text-base text-blue-700 mb-2">Interactive dashboard visualizing Netflix metrics including revenue, subscriptions, and content analysis.</p>
+        </div>
+        <!-- Sudoku Solver -->
+        <div class="bg-white rounded-xl shadow-lg p-5 shadow-hover transition-all flex flex-col h-full">
+          <img src="https://img.freepik.com/free-vector/number-puzzle-game-concept_23-2148723480.jpg" alt="Sudoku Solver" class="rounded-lg mb-4 w-full object-cover h-32">
+          <h3 class="font-bold text-lg mb-1 text-blue-800">Sudoku Game Solver</h3>
+          <span class="text-xs text-cyan-700 mb-1">JavaScript, Backtracking</span>
+          <p class="text-base text-blue-700 mb-2">Web-based Sudoku solver using advanced backtracking algorithms for fast puzzle completion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold gradient-text mb-7 text-center">Certifications</h2>
+      <ul class="space-y-5">
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover"><i class="fas fa-certificate text-blue-500 text-2xl mr-4"></i>
+          <div><b>Complete Machine Learning and Data Science Program</b> - GeeksForGeeks, July 2024</div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover"><i class="fas fa-certificate text-blue-500 text-2xl mr-4"></i>
+          <div><b>Database Management System</b> - NPTEL, May 2024</div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover"><i class="fas fa-certificate text-blue-500 text-2xl mr-4"></i>
+          <div><b>Data Structures and Algorithms</b> - GeeksForGeeks, May 2024</div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover"><i class="fas fa-certificate text-blue-500 text-2xl mr-4"></i>
+          <div><b>R programming</b> - Coursera/John Hopkins University, March 2023</div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover"><i class="fas fa-certificate text-blue-500 text-2xl mr-4"></i>
+          <div><b>Hackerrank</b> (Problem Solving, Java, Python)</div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover"><i class="fas fa-certificate text-blue-500 text-2xl mr-4"></i>
+          <div><b>Coursera</b> (IBM Data Science, Analysis of Algorithms & others)</div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover"><i class="fas fa-certificate text-blue-500 text-2xl mr-4"></i>
+          <div><b>Udemy</b> (Mastering Data Structures & Algorithms using C++, Python)</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Co-curricular Activities Section -->
+  <section id="activities" class="">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold gradient-text mb-7 text-center">Co-curricular Activities</h2>
+      <ul class="space-y-6">
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover">
+          <i class="fas fa-award text-cyan-600 text-2xl mr-4"></i>
+          <div>
+            <b>5 Star Rating on HackerRank</b> - Over 300 problems solved.
+          </div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover">
+          <i class="fas fa-medal text-yellow-600 text-2xl mr-4"></i>
+          <div>
+            <b>2 Golden Badges in Python, Java & DSA on HackerRank</b>
+          </div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover">
+          <i class="fas fa-star text-blue-500 text-2xl mr-4"></i>
+          <div>
+            <b>Top 10% in HSC for Maharashtra State Board</b>
+          </div>
+        </li>
+        <li class="flex items-start bg-white bg-opacity-90 rounded-xl shadow-lg p-4 shadow-hover">
+          <i class="fas fa-handshake text-cyan-700 text-2xl mr-4"></i>
+          <div>
+            <b>Hackathon Participation:</b>
+            <ul class="list-disc ml-4 text-blue-800">
+              <li>Hack-AI Hackathon (VickyBytes)</li>
+              <li>Tata Imagination Challenge 2024</li>
+              <li>IdeaHub 2.0: The Ultimate Tech Challenge</li>
+              <li>Hack-On With Amazon Season 4</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold gradient-text mb-7 text-center">Education</h2>
+      <ul class="space-y-8">
+        <li class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 shadow-hover flex flex-col sm:flex-row items-start sm:items-center">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-full bg-blue-200 text-3xl mr-0 sm:mr-5 mb-4 sm:mb-0"><i class="fas fa-university text-blue-600"></i></div>
+          <div>
+            <strong>Lovely Professional University</strong> (2022 – 2026)<br>
+            <span>B.Tech in Computer Science and Engineering</span><br>
+            <span class="text-blue-700">CGPA: 8.05</span>
+          </div>
+        </li>
+        <li class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 shadow-hover flex flex-col sm:flex-row items-start sm:items-center">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-full bg-blue-200 text-3xl mr-0 sm:mr-5 mb-4 sm:mb-0"><i class="fas fa-school text-cyan-600"></i></div>
+          <div>
+            <strong>Rao Junior College of Science</strong> (2019 – 2021)<br>
+            <span>12th (Science)</span><br>
+            <span class="text-blue-700">Percentage: 95.80%</span>
+          </div>
+        </li>
+        <li class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 shadow-hover flex flex-col sm:flex-row items-start sm:items-center">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center rounded-full bg-cyan-200 text-3xl mr-0 sm:mr-5 mb-4 sm:mb-0"><i class="fas fa-graduation-cap text-blue-400"></i></div>
+          <div>
+            <strong>St. Xavier’s High School</strong> (2018 – 2019)<br>
+            <span>10th</span><br>
+            <span class="text-blue-700">Percentage: 84.00%</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Video CV Section -->
+  <section id="video-cv" class="">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold gradient-text mb-7 text-center">Video CV</h2>
+      <div class="flex flex-col md:flex-row items-center md:space-x-10 space-y-6 md:space-y-0">
+        <div class="flex-1 flex flex-col mb-4 md:mb-0">
+          <p class="text-base text-blue-800 mb-4">Presenting my Video CV! Get to know me beyond the resume, as I summarize my journey, passion, and skills in technology, data science, and problem-solving.</p>
+          <ul class="pl-5 text-blue-700 list-disc mb-3">
+            <li>Enthusiasm for AI/ML & Data Science</li>
+            <li>Portfolio highlights & major achievements</li>
+            <li>Soft skills & professional aspirations</li>
+          </ul>
+        </div>
+        <div class="flex-1 flex justify-center">
+          <!-- Replace the example src with your actual video link when available -->
+          <video controls playsinline webkit-playsinline poster="https://img.freepik.com/free-vector/3d-video-recording-concept-illustration_114360-17503.jpg" class="rounded-lg shadow-lg w-full max-w-md bg-gray-100">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag. 
+          </video>
+        </div>
+      </div>
+      <p class="text-center text-xs text-blue-400 mt-2 mb-0">Want your own video here? <span class="text-blue-600 font-semibold">Share your .mp4 video link!</span></p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold gradient-text mb-8 text-center">Contact</h2>
+      <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+        <div class="flex-1 mb-4 md:mb-0">
+          <ul class="space-y-4 text-lg" style="font-variant-ligatures:none;">
+            <li><i class="fas fa-envelope text-blue-800 mr-3"></i> sarveshdsawant2003@gmail.com</li>
+            <li><i class="fas fa-mobile-alt text-blue-800 mr-3"></i> +91 7738736826</li>
+            <li><i class="fab fa-linkedin text-blue-800 mr-3"></i>
+              <a href="https://linkedin.com/in/sarveshsawant03" target="_blank" class="hover:underline">linkedin.com/in/sarveshsawant03</a>
+            </li>
+            <li><i class="fab fa-github text-blue-800 mr-3"></i>
+              <a href="https://github.com/SarveshSawant03" target="_blank" class="hover:underline">github.com/SarveshSawant03</a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex-1">
+          <form class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 shadow-hover transition-all" name="contact" netlify>
+            <div class="flex flex-col space-y-4">
+              <input type="text" name="name" placeholder="Your Name" class="px-4 py-2 border border-blue-200 rounded focus:outline-none focus:border-blue-400" required>
+              <input type="email" name="email" placeholder="Your Email" class="px-4 py-2 border border-blue-200 rounded focus:outline-none focus:border-cyan-400" required>
+              <textarea name="message" placeholder="Your Message" rows="3" class="px-4 py-2 border border-blue-200 rounded focus:outline-none focus:border-cyan-400" required></textarea>
+              <button type="submit" class="bg-blue-600 text-white font-bold py-2 rounded shadow-lg hover:bg-cyan-500 transition-colors">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="text-center mt-12 py-6 bg-transparent text-blue-600 text-md font-semibold">
+    &copy; 2024 Sarvesh Sawant · Built with Tailwind CSS, FontAwesome, and 💙
+  </footer>
+</body>
+</html>
+
